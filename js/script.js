@@ -2,13 +2,24 @@ let number1 = 0;
 let number2 = 0;
 let operation;
 
-const setTime = ()=>{};
+const setTime = ()=>{
+    setInterval(() => {
+        const now = new Date();
+        const horas = now.getHours();
+        const minutos = now.getMinutes().toString().padStart(2, '0');
+        const segundos = now.getSeconds().toString().padStart(2, '0');
+        const dataAtual = now.toLocaleDateString('pt-BR');
+
+        document.querySelector('#real-time-clock').textContent = ```${horas}:${minutos}:${segundos}```
+    },1000);
+};
 
 document.addEventListener('DOMContentLoaded',()=>{
     buttons = document.querySelectorAll('.calculator__keys button');
     buttons.forEach(element => {
         element.addEventListener('click',()=>{changeNumber(element)});
     });
+    setTime();
 });
 
 
