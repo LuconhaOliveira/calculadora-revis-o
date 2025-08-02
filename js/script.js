@@ -68,6 +68,21 @@ const changeNumber =(button)=>{
                     number1=display.textContent;
                     number2=0;
                     break;
+                case 'subtract':
+                    display.textContent = parseFloat(number1)-parseFloat(number2);
+                    number1=display.textContent;
+                    number2=0;
+                    break;
+                case 'multiply':
+                    display.textContent = parseFloat(number1)*parseFloat(number2);
+                    number1=display.textContent;
+                    number2=0;
+                    break;
+                case 'divide':
+                    display.textContent = parseFloat(number1)/parseFloat(number2);
+                    number1=display.textContent;
+                    number2=0;
+                    break;
             }
             break;
 
@@ -81,6 +96,5 @@ const changeNumber =(button)=>{
             break;
 
     }
-    number1 = display.textContent;
 };
 
