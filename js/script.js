@@ -8,26 +8,24 @@ const setTime = ()=>{
         const horas = now.getHours();
         const minutos = now.getMinutes().toString().padStart(2, '0');
         const segundos = now.getSeconds().toString().padStart(2, '0');
-        const dataAtual = now.toLocaleDateString('pt-BR');
 
-        document.querySelector('#real-time-clock').textContent = ```${horas}:${minutos}:${segundos}```
+        document.querySelector('#real-time-clock').textContent = `${horas}:${minutos}:${segundos}`
     },1000);
 };
 
 document.addEventListener('DOMContentLoaded',()=>{
+    setTime();
     buttons = document.querySelectorAll('.calculator__keys button');
     buttons.forEach(element => {
         element.addEventListener('click',()=>{changeNumber(element)});
     });
-    setTime();
 });
 
 
 const changeNumber =(button)=>{
     value = button.getAttribute("data-number") || button.getAttribute("data-action");
-    console.log(value);
+    console.log(value,number1, number2, operation);
     let display = document.getElementById('display');
-    let displayNumber = display.textContent;
     switch(value){
         case 'clear':
             display.textContent = '0';
@@ -98,12 +96,14 @@ const changeNumber =(button)=>{
             break;
 
         default:
+            let displayNumber = display.textContent;
             if(parseFloat(displayNumber)){
                 displayNumber += value;
             }else{
                 displayNumber = value;
             }
             display.textContent = displayNumber;
+            number1=display.textContent;
             break;
 
     }
