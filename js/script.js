@@ -33,36 +33,38 @@ const changeNumber =(button)=>{
             number2=0;
             break;
         case 'decimal':
-            display.textContent = '.'
+            display.textContent += '.'
             break;
         case 'add':
-            number2? display.textContent = parseFloat(number1)+parseFloat(number2) : display.textContent=0;
+            number2? display.textContent = parseFloat(number2)+parseFloat(number1) : display.textContent=0;
             number2=number1;
             number1=0;
             operation=value;
             break;
         case 'subtract':
-            number2? display.textContent = parseFloat(number1)-parseFloat(number2) : display.textContent=0;
+            number2? display.textContent = parseFloat(number2)-parseFloat(number1) : display.textContent=0;
             number2=number1;
             number1=0;
             operation=value;
             break;
         case 'multiply':
-            number2? display.textContent = parseFloat(number1)*parseFloat(number2) : display.textContent=0;
+            number2? display.textContent = parseFloat(number2)*parseFloat(number1) : display.textContent=0;
             number2=number1;
             number1=0;
             operation=value;
             break;
         case 'divide':
-            display.textContent = parseFloat(display.textContent)**2;
-            number1=display.textContent;
+            number2? display.textContent = parseFloat(number2)/parseFloat(number1) : display.textContent=0;
+            number2=number1;
+            number1=0;
+            operation=value;
             break;
         case 'power':
-            display.textContent = Math.sqrt(parseFloat(display.textContent));
+            display.textContent = parseInt(display.textContent)**2;
             number1=display.textContent;
             break;
         case 'sqrt':
-            number2? display.textContent = parseFloat(number1)+parseFloat(number2) : display.textContent=0;
+            display.textContent = Math.sqrt(parseFloat(display.textContent));
             number1=display.textContent;
             break;
         case 'percentage':
@@ -73,22 +75,22 @@ const changeNumber =(button)=>{
         case 'calculate':
             switch(operation){
                 case 'add':
-                    display.textContent = parseFloat(number1)+parseFloat(number2);
+                    display.textContent = parseFloat(number2)+parseFloat(number1);
                     number1=display.textContent;
                     number2=0;
                     break;
                 case 'subtract':
-                    display.textContent = parseFloat(number1)-parseFloat(number2);
+                    display.textContent = parseFloat(number2)-parseFloat(number1);
                     number1=display.textContent;
                     number2=0;
                     break;
                 case 'multiply':
-                    display.textContent = parseFloat(number1)*parseFloat(number2);
+                    display.textContent = parseFloat(number2)*parseFloat(number1);
                     number1=display.textContent;
                     number2=0;
                     break;
                 case 'divide':
-                    display.textContent = parseFloat(number1)/parseFloat(number2);
+                    display.textContent = parseFloat(number2)/parseFloat(number1);
                     number1=display.textContent;
                     number2=0;
                     break;
