@@ -24,16 +24,38 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 const changeNumber =(button)=>{
     value = button.getAttribute("data-number") || button.getAttribute("data-action");
-    console.log(value,number1, number2, operation);
+     console.log(value,number1, number2, operation);
     let display = document.getElementById('display');
     switch(value){
+        case 'backspace':
+            display.textContent=display.textContent.slice(0,-1);
+            if(!display.textContent) display.textContent=0;
+            number1=display.textContent;
+            break;
+        case 'negative':
+            parseFloat(display.textContent)>0? display.textContent = '-'+display.textContent:display.textContent = display.textContent.slice(1);
+            number1=display.textContent;
+            break;
+        case 'invert':
+            display.textContent = 1/display.textContent;
+            number1=display.textContent;
+            break;
+        case 'factorial':
+            let res=1;
+            for(let i=1;i<=display.textContent;i++){
+                res=res*i;
+            };
+            display.textContent = res;
+            number1=display.textContent;
+            break;
         case 'clear':
             display.textContent = '0';
             number1=0;
             number2=0;
             break;
         case 'decimal':
-            display.textContent += '.'
+            if(display.textContent[display.textContent.length-1]=='.')break;
+            if(parseFloat(display.textContent)-parseInt(display.textContent)==0)display.textContent += '.';
             break;
         case 'add':
             number2? display.textContent = parseFloat(number2)+parseFloat(number1) : display.textContent=0;
@@ -64,7 +86,7 @@ const changeNumber =(button)=>{
             number1=display.textContent;
             break;
         case 'sqrt':
-            display.textContent = Math.sqrt(parseFloat(display.textContent));
+            parseFloat(number1)>0?display.textContent = Math.sqrt(parseFloat(display.textContent)):display.textContent='Entrada inválida';
             number1=display.textContent;
             break;
         case 'percentage':
@@ -90,7 +112,7 @@ const changeNumber =(button)=>{
                     number2=0;
                     break;
                 case 'divide':
-                    display.textContent = parseFloat(number2)/parseFloat(number1);
+                    number2==0?display.textContent = parseFloat(number2)/parseFloat(number1):display.textContent='Não é possível dividir por zero';
                     number1=display.textContent;
                     number2=0;
                     break;
